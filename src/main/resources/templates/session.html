@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout :: htmlhead" th:with="title='Welcome'"></head>
+
+  <body>
+    <div th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+      <h1><span th:text="${sessionName}"></span></h1>
+		<table class="table table-hover">
+			<tr>
+				<th>Donor</th>
+				<th>Presentee</th>
+			</tr>
+			<tr th:each="p : ${pairs}">
+				<td th:text="${p.donor.name}"></td>
+				<td th:text="${p.presentee.name}"></td>
+			</tr>
+		</table>		
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+  </body>
+</html>

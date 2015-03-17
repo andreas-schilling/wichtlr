@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout :: htmlhead" th:with="title='Welcome'"></head>
+
+  <body>
+    <div th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome to <span class="glyphicon glyphicon-tree-conifer"></span>wichtlr<sup><small>BETA</small></sup></h1>
+        <p>The leading application for xmas wichtel action.</p>
+        <p><a class="btn btn-primary btn-lg" href="/participants/" role="button">Start managing the participants &raquo;</a></p>
+      </div>
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+  </body>
+</html>

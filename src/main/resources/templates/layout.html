@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" ng-app="enginesModule">
+<head th:fragment="htmlhead">
+<meta charset="utf-8"></meta>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<meta name="description" content=""></meta>
+<meta name="author" content=""></meta>
+<link rel="shortcut icon" type="image/png"
+	th:href="@{/images/favicon.png}"></link>
+
+<title th:text="${title}">(title)</title>
+
+<link th:href="@{/webjars/bootstrap/3.2.0/css/bootstrap.css}"
+	rel="stylesheet"></link>
+<link th:href="@{/css/starter.css}" rel="stylesheet"></link>
+</head>
+
+<body>
+	<div th:fragment="navbar"
+		class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/start"><span
+					class="glyphicon glyphicon-tree-conifer"></span>&nbsp;wichtlr</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/start">Home</a></li>
+					<li><a href="/participants/">Participants</a></li>
+					<li><a href="/constraints/">Participant constraints</a></li>
+					<li><a href="/sessions/">Wichtel sessions</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="starter-template">
+			<h1>wichtlr</h1>
+		</div>
+	</div>
+
+	<div th:fragment="footer" id="footer">
+		<div class="container">
+			<p class="muted credit">wichtlr<sup><small>BETA</small></sup></p>
+		</div>
+		<script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
+		<script th:src="@{/webjars/bootstrap/3.2.0/js/bootstrap.min.js}"></script>
+	</div>
+
+</body>
+</html>

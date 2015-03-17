@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout :: htmlhead" th:with="title='Welcome'"></head>
+
+  <body>
+    <div th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+      <h1>Constraints</h1>
+		<table class="table table-hover">
+			<tr>
+				<th>Participant</th>
+				<th>May not pair with</th>
+				<th/>
+			</tr>
+			<tr th:each="p : ${participants}">
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.exclusions[0].name}"></td>
+				<td><form th:action="@{/constraints/__${p.id}__/__${p.exclusions[0].id}__}" th:method="delete">
+				  <input type="submit" value="Delete" class="btn btn-danger"/>
+				</form></td>
+			</tr>
+		</table>
+		<h1>New mutual exclusion</h1>
+		<form th:action="@{/constraints/}" th:object="${newConstraint}" method="post">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3">
+						<select th:field="*{participant}" class="form-control">
+	  					<option th:each="person : ${allParticipants}" th:value="${person.id}" 
+	          				th:text="${person.name}">Wireframe</option>
+						</select>
+					</div>
+					<div class="col-md-2">
+						<span>may not pair with</span>
+					</div>
+					<div class="col-md-3">
+						<select th:field="*{excluded}" class="form-control">
+	  					<option th:each="person : ${allParticipants}" th:value="${person.id}" 
+	          				th:text="${person.name}">Wireframe</option>
+						</select>
+					</div>			
+					<div class="col-md-1"><input type="submit" class="btn btn-default" value="Add"/></div>
+				</div>
+			</div>
+		</form>
+			
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+  </body>
+</html>

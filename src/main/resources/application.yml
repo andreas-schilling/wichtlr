@@ -1,0 +1,11 @@
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: none
+    datasource:
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:~/wichtlr;DB_CLOSE_DELAY=-1
+        username: sa
+        password:
+    thymeleaf:
+        cache: false

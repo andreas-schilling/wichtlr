@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout :: htmlhead" th:with="title='Welcome'"></head>
+
+  <body>
+    <div th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+      <h1>Participants</h1>
+		<table class="table table-hover">
+			<tr>
+				<th>Full name</th>
+				<th>EMail</th>
+				<th/>
+				<th/>
+			</tr>
+			<tr th:each="p : ${participants}">
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.email}"></td>
+				<td>
+				<form th:action="@{/participants/__${p.id}__}" th:method="get">
+				  <input type="submit" value="Edit" class="btn btn-primary"/>
+				</form>
+				</td>
+				<td>
+				<form th:action="@{/participants/__${p.id}__}" th:method="delete">
+				  <input type="submit" value="Delete" class="btn btn-danger"/>
+				</form>				
+				</td>
+			</tr>
+		</table>
+		<div th:if="${editedParticipant != null}">
+		<h1>Edit <span th:text="${editedParticipant.name}"/></h1>
+		<form th:action="@{/participants/__${editedParticipant.id}__}" th:object="${editedParticipant}" th:method="put">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3"><input type="text" class="form-control" th:field="*{name}" placeholder="Full Name"/></div>
+					<div class="col-md-3"><input type="email" class="form-control" th:field="*{email}" placeholder="Enter email"/></div>
+					<div class="col-md-1"><input type="submit" name="action" class="btn btn-default" value="Save"/></div>
+					<div class="col-md-1"><input type="submit" name="action" class="btn btn-default" value="Cancel"/></div>
+				</div>
+			</div>
+		</form>
+		</div>
+		<h1>New participant</h1>
+		<form th:action="@{/participants/}" th:object="${newParticipant}" method="post">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3"><input type="text" class="form-control" th:field="*{name}" placeholder="Full Name"/></div>
+					<div class="col-md-3"><input type="email" class="form-control" th:field="*{email}" placeholder="Enter email"/></div>
+					<div class="col-md-1"><input type="submit" class="btn btn-default" value="Add"/></div>
+				</div>
+			</div>
+		</form>			
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:include="layout :: htmlhead" th:with="title='Welcome'"></head>
+
+  <body>
+    <div th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+      <h1>Wichtel sessions</h1>
+		<table class="table table-hover">
+			<tr>
+				<th>Name</th>
+				<th/>
+				<th/>
+				<th/>
+			</tr>
+			<tr th:each="s : ${sessions}">
+				<td th:text="${s.name}"></td>
+				<td>
+					<form th:action="@{/sessions/__${s.id}__/send}" th:method="post">
+					  <input type="submit" value="Send E-Mails" class="btn btn-success"/>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/sessions/__${s.id}__}" th:method="delete">
+					  <input type="submit" value="Delete" class="btn btn-danger"/>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/sessions/__${s.id}__/pairs}" th:method="get">
+					  <input type="submit" value="Show secret content" class="btn btn-warning"/>
+					</form>
+				</td>
+			</tr>
+		</table>
+		<h1>New Wichtel session</h1>
+		<form th:action="@{/sessions/}" th:object="${newWichtelSession}" method="post">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3"><input type="text" class="form-control" th:field="*{name}" placeholder="Session name"/></div>
+					<div class="col-md-1"><input type="submit" class="btn btn-default" value="Shuffle + Create"/></div>
+				</div>
+			</div>
+		</form>
+    </div>
+
+    <div th:include="layout :: footer" id="footer">(footer)</div>
+  </body>
+</html>
